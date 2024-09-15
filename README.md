@@ -1,1 +1,1 @@
-# Databases___Practice
+# Базы данных | Практика
