@@ -174,3 +174,44 @@ SELECT RTRIM(CONCAT(vend_name, vend_country)) AS 'Задание 4.4' FROM Vendo
 
 #Задание 4.5
 SELECT prod_id, quantity, item_price, (quantity * item_price) AS expanded_data FROM OrderItems;
+
+
+
+SELECT '5 часть' AS '-----Задачи по SQL-----';
+
+#Задание 5.1
+SELECT vend_name, UPPER(vend_name) AS vend_name_upcase FROM Vendors ORDER BY vend_name;
+
+#Задание 5.2 (! FUNCTION DB.DATEPART does not exist  !)
+SELECT order_num, YEAR(order_date) FROM Orders;
+
+#Задание 5.3
+SELECT AVG(prod_price) AS avg_price FROM Products;
+
+#Задание 5.4
+SELECT COUNT(*) FROM Customers;
+
+#Задание 5.5
+SELECT MAX(prod_price) AS max_price FROM Products;
+
+
+
+SELECT '6 часть' AS '-----Задачи по SQL-----';
+
+#Задание 6.1
+SELECT MIN(prod_price) AS min_price FROM Products;
+
+#Задание 6.2
+SELECT SUM(quantity) AS item_ordered FROM OrderItems WHERE order_num = 20005;
+
+#Задание 6.3
+SELECT AVG(DISTINCT prod_price) AS avg_price FROM Products;
+
+#Задание 6.4
+SELECT COUNT(*) AS num_items, 
+       MIN(prod_price) AS price_min,
+       MAX(prod_price) AS price_max,
+       AVG(prod_price) AS price_avg FROM Products;
+
+#Задание 6.5
+SELECT COUNT(vend_id) AS num_prods FROM Products GROUP BY vend_id;
