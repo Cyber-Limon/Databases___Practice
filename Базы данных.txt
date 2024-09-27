@@ -50,7 +50,7 @@ INSERT INTO OrderItems VALUES (20009, 3, 'BNBG03', 250, 2.49);
 
 CREATE TABLE Orders (
     order_num INT(11) PRIMARY KEY,
-    order_dare DATETIME NOT NULL,
+    order_date DATETIME NOT NULL,
     cust_id CHAR(10) NOT NULL
 );
 
