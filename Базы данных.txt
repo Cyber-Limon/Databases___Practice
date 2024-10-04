@@ -215,3 +215,53 @@ SELECT COUNT(*) AS num_items,
 
 #Задание 6.5
 SELECT COUNT(vend_id) AS num_prods FROM Products GROUP BY vend_id;
+
+
+
+SELECT '7 Часть' AS '-----Задачи по SQL-----';
+
+#Задание 7.1
+SELECT cust_id AS orders FROM Orders GROUP BY cust_id HAVING COUNT(cust_id) >= 2;
+
+#Задание 7.2 
+SELECT vend_id AS num_prods FROM Products WHERE prod_price >= 4 GROUP BY vend_id HAVING COUNT(vend_id) >= 2; 
+
+#Задание 7.3
+SELECT order_num AS items FROM OrderItems GROUP BY order_num HAVING COUNT(order_num) >= 3 ORDER BY order_num, items;
+
+#Задание 7.4
+SELECT cust_id FROM Orders WHERE order_num IN (SELECT order_num FROM OrderItems WHERE prod_id = "RGAN01");
+
+#Задание 7.5
+SELECT cust_name, cust_state, (SELECT COUNT(*) FROM Orders WHERE Orders.cust_id = Customers.cust_id) AS orders FROM Customers ORDER BY cust_name;
+
+
+
+SELECT '8 часть' AS '-----Задачи по SQL-----';
+
+#Задание 8.1
+SELECT vend_name, prod_name, prod_price FROM Vendors, Products WHERE Vendors.vend_id = Products.vend_id;
+
+#Задание 8.2
+SELECT prod_name, vend_name, prod_price, quantity FROM OrderItems, Products, Vendors 
+                                                  WHERE OrderItems.prod_id = Products.prod_id 
+                                                  AND Products.vend_id = Vendors.vend_id 
+                                                  AND order_num = 20007; 
+
+#Задание 8.3
+SELECT cust_name, cust_contact FROM OrderItems AS OI, Orders AS O, Customers AS C 
+                               WHERE OI.order_num = O.order_num 
+                               AND C.cust_id = O.cust_id 
+                               AND prod_id = "RGAN01";
+
+#Задание 8.4
+SELECT c1.cust_name, c1.cust_id, c1.cust_contact FROM Customers AS c1, Customers AS c2 
+                                                 WHERE c1.cust_name = c2.cust_name 
+                                                 AND c2.cust_contact = "Jim Jones"; 
+
+#Задание 8.5
+SELECT O.order_num, O.order_date, OI.prod_id, OI.quantity, OI.item_price 
+                                FROM Customers AS C, Orders AS O, OrderItems AS OI 
+                                WHERE C.cust_id = O.cust_id 
+                                AND OI.order_num = O.order_num 
+                                AND prod_id = "RGAN01";
