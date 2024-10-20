@@ -265,3 +265,113 @@ SELECT O.order_num, O.order_date, OI.prod_id, OI.quantity, OI.item_price
                                 WHERE C.cust_id = O.cust_id 
                                 AND OI.order_num = O.order_num 
                                 AND prod_id = "RGAN01";
+
+
+
+SELECT '9 Часть' AS '-----Задачи по SQL-----';
+
+#Задание 9.1
+SELECT Customers.cust_id, Orders.order_num FROM Customers LEFT OUTER JOIN Orders ON Customers.cust_id = Orders.cust_id;
+
+#Задание 9.2 
+SELECT cust_name, cust_contact, cust_email FROM Customers WHERE cust_state IN ('IL', 'IN', 'MI')
+UNION
+SELECT cust_name, cust_contact, cust_email FROM Customers WHERE cust_name = "Fun4All";
+
+#Задание 9.3
+SELECT cust_name, cust_contact, cust_email FROM Customers WHERE cust_state IN ('IL', 'IN', 'MI')
+UNION ALL
+SELECT cust_name, cust_contact, cust_email FROM Customers WHERE cust_name = "Fun4All";
+
+#Задание 9.4
+INSERT INTO Customers VALUES ('1000000006', 'Toy Land', '123 Any Street', 'New York', 'NY', '11111', 'USA', NULL, Null);
+SELECT * FROM Customers;
+
+#Задание 9.5
+CREATE TABLE CustNew (
+    cust_id CHAR(10) PRIMARY KEY,
+    cust_name CHAR(50) NOT NULL,
+    cust_address CHAR(50) DEFAULT NULL,
+    cust_city CHAR(50) DEFAULT NULL,
+    cust_state CHAR(5) DEFAULT NULL,
+    cust_zip CHAR(10) DEFAULT NULL,
+    cust_country CHAR(50) DEFAULT NULL,
+    cust_contact CHAR(50) DEFAULT NULL,
+    cust_email CHAR(255) DEFAULT NULL
+);
+
+INSERT INTO CustNew VALUES (111111111, "Village Boys", "200 Maple Lane", "Ufa", "RB", 66666, "RU", "Leporin Egorov", "lep@egor.com");
+INSERT INTO Customers SELECT * FROM CustNew;
+SELECT * FROM Customers;
+
+
+
+SELECT '10 часть' AS '-----Задачи по SQL-----';
+
+#Задание 10.1
+INSERT INTO Customers VALUES ('1111111111', 'Toy Land', '123 Any Street', 'New York', 'NY', '11111', 'USA', NULL, Null);
+DELETE FROM Customers WHERE cust_state = "OH";
+SELECT * FROM Customers;
+
+#Задание 10.2
+DROP TABLE IF EXISTS Products;
+CREATE TABLE Products (
+    prod_id CHAR(10) PRIMARY KEY,
+    vend_id CHAR(10) NOT NULL DEFAULT('LLL96'),
+    prod_name CHAR(255) NOT NULL,
+    prod_price DECIMAL(8,2) NOT NULL,
+    prod_desc TEXT DEFAULT NULL
+);
+
+INSERT INTO Products VALUES ('BR01', 'BRS01', '8 inch teddy bear', '5.99', '8 inch teddy bear, comes with cap and jacket');
+INSERT INTO Products VALUES ('BR02', 'BRS01', '12 inch teddy bear', '8.99', '12 inch teddy bear, comes with cap and jacket');
+INSERT INTO Products VALUES ('BR03', 'BRS01', '18 inch teddy bear', '11.99', '18 inch teddy bear, comes with cap and jacket');
+INSERT INTO Products VALUES ('BNBG01', 'DLL01', 'Fish bean bag toy', '3.49', 'Fish bean bag toy, complete with bean bag worms with which to feed it');
+INSERT INTO Products VALUES ('BNBG02', 'DLL01', 'Bird bean bag toy', '3.49', 'Bird bean bag toy, eggs are not included');
+INSERT INTO Products VALUES ('BNBG03', 'DLL01', 'Rabbit bean bag toy', '3.49', 'Rabbit bean bag toy, comes with bean bag carrots');
+INSERT INTO Products VALUES ('RGAN01', 'DLL01', 'Raggedy Ann', '4.99', '18 inch Raggedy Ann doll');
+INSERT INTO Products VALUES ('RYL01', 'FNG01', 'King doll', '9.49', '12 inch king doll with royal garments and crown');
+INSERT INTO Products VALUES ('RYL02', 'FNG01', 'Queen doll', '9.49', '12 inch queen doll with royal garments and crown');
+
+SELECT * FROM Products;
+
+#Задание 10.3
+INSERT INTO Products VALUES ('LEP01', DEFAULT, '8 inch teddy bear', '5.99', '8 inch teddy bear, comes with cap and jacket');
+SELECT * FROM Products;
+
+#Задание 10.4
+ALTER TABLE Vendors 
+    ADD vend_phone CHAR(20);    
+SELECT * FROM Vendors;
+
+#Задание 10.5
+DROP TABLE IF EXISTS Vendors;
+SELECT * FROM Vendors;
+
+#Задание 10.6
+CREATE VIEW ProductCustomers AS
+    SELECT cust_name,
+           cust_contact,
+           prod_id
+    FROM Customers, Orders, OrderItems WHERE Customers.cust_id = Orders.cust_id AND OrderItems.order_num = Orders.order_num;
+    
+SELECT * FROM ProductCustomers;   
+
+#Задание 10.7
+CREATE VIEW CustomerEmailList AS
+    SELECT cust_id,
+           cust_name,
+           cust_email
+    FROM Customers WHERE cust_email IS NOT NULL;
+    
+SELECT * FROM CustomerEmailList;
+
+#Задание 10.8
+CREATE VIEW TenEight AS
+    SELECT prod_id,
+           quantity,
+           item_price,
+           quantity * item_price
+    FROM OrderItems WHERE order_num = 20008;
+    
+SELECT * FROM TenEight; 
