@@ -1,0 +1,74 @@
+let $task_1 := catalog / product
+
+let $task_2 := * / product / @dept
+
+let $task_3 := catalog / product [@dept eq "ACC"]
+
+let $task_4 := catalog / product [2]
+
+let $task_5 := for $x in catalog / product
+			   where $x / @dept = "ACC"
+               order by $x / name
+			   return $x / name
+
+let $task_6 := for $x in catalog / product
+			   let $dept := $x / @dept, $name := $x / name
+               where $dept = "ACC"
+               order by $name
+               return $name
+
+let $task_7 := element ul {order / item}
+
+let $task_8 := count(catalog / product)
+
+let $task_9 := element ul {for $x in catalog / product / name
+						   return element li {$x}}
+
+let $task_10 := // data(name)
+
+let $task_11 := for $x in catalog / product
+				return <product class = "{$x / @dept}"> {$x / *} </product>
+
+let $task_12 := for $y in order / item	
+					let $el := for $x in catalog / product
+                    		   where $x / number = $y / @num
+                    		   return $x / name / data
+                return <query name = "{$el}" count = "{$y / quantity}"/>
+
+let $task_13 := for $x in distinct-values( // item / @dept)
+					let $n := for $y in // item
+                    		  where $y / @dept = $x 
+                    		  return $y / @quantity
+                return <query dept = "{$x}" count = "{sum($n)}"/>
+
+
+
+return <tasks>
+
+    {$task_1}
+    
+    {for $x in $task_2 return string($x)}   
+    
+    {$task_3}
+    
+    {$task_4}
+    
+    {$task_5}
+    
+    {$task_6}
+    
+    {$task_7}
+    
+    {$task_8}
+    
+    {$task_9}
+    
+    {$task_10}
+    
+    {$task_11}
+    
+    {$task_12}
+    
+    {$task_13}
+        
+</tasks> 
