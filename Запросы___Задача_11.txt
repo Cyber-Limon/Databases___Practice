@@ -7,39 +7,39 @@ let $task_3 := catalog / product [@dept eq "ACC"]
 let $task_4 := catalog / product [2]
 
 let $task_5 := for $x in catalog / product
-			   where $x / @dept = "ACC"
-               order by $x / name
-			   return $x / name
+	           where $x / @dept = "ACC"
+                   order by $x / name
+	           return $x / name
 
 let $task_6 := for $x in catalog / product
-			   let $dept := $x / @dept, $name := $x / name
-               where $dept = "ACC"
-               order by $name
-               return $name
+	           let $dept := $x / @dept, $name := $x / name
+                   where $dept = "ACC"
+                   order by $name
+                   return $name
 
 let $task_7 := element ul {order / item}
 
 let $task_8 := count(catalog / product)
 
 let $task_9 := element ul {for $x in catalog / product / name
-						   return element li {$x}}
+			       return element li {$x}}
 
 let $task_10 := // data(name)
 
 let $task_11 := for $x in catalog / product
-				return <product class = "{$x / @dept}"> {$x / *} </product>
+		    return <product class = "{$x / @dept}"> {$x / *} </product>
 
 let $task_12 := for $y in order / item	
-					let $el := for $x in catalog / product
-                    		   where $x / number = $y / @num
+      		    let $el := for $x in catalog / product
+                    	           where $x / number = $y / @num
                     		   return $x / name / data
-                return <query name = "{$el}" count = "{$y / quantity}"/>
+                    return <query name = "{$el}" count = "{$y / quantity}"/>
 
 let $task_13 := for $x in distinct-values( // item / @dept)
-					let $n := for $y in // item
-                    		  where $y / @dept = $x 
+    		    let $n := for $y in // item
+                    	          where $y / @dept = $x 
                     		  return $y / @quantity
-                return <query dept = "{$x}" count = "{sum($n)}"/>
+                    return <query dept = "{$x}" count = "{sum($n)}"/>
 
 
 
