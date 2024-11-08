@@ -67,3 +67,27 @@ SELECT * FROM `Сотрудник` AS sot
 RIGHT JOIN `Должность` AS dol
 ON sot.`Код должности` = dol.`Код`
 WHERE sot.`Код должности` IS NOT NULL;
+
+
+
+SELECT 'ANTI SEMI JOIN' AS '-----JOIN-----';
+
+SELECT * FROM `Сотрудник` AS sot 
+WHERE NOT EXISTS (SELECT 1 FROM `Должность` AS dol 
+                  WHERE sot.`Код должности` = dol.`Код`);
+
+                  
+
+SELECT 'LEFT OUTER JOIN' AS '------JOIN------';
+
+SELECT * FROM `Сотрудник` AS sot 
+LEFT OUTER JOIN `Должность` AS dol
+ON sot.`Код должности` = dol.`Код`;
+
+
+
+SELECT 'RIGHT OUTER JOIN' AS '------JOIN------';
+
+SELECT * FROM `Сотрудник` AS sot 
+RIGHT OUTER JOIN `Должность` AS dol
+ON sot.`Код должности` = dol.`Код`;
