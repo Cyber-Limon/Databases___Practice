@@ -111,8 +111,10 @@ ON sot.`Код должности` = dol.`Код`;
 SELECT 'INNER JOIN LEFT OUTER JOIN' AS '-----------JOIN-----------';
 
 SELECT * FROM `Сотрудник` AS sot 
-INNER JOIN `Должность` AS dol ON sot.`Код должности` = dol.`Код`
-LEFT OUTER JOIN `Организация` AS org ON sot.`Код организации` = org.`Код`;
+INNER JOIN `Должность` AS dol 
+ON sot.`Код должности` = dol.`Код`
+LEFT OUTER JOIN `Организация` AS org 
+ON sot.`Код организации` = org.`Код`;
 
 
 
@@ -120,7 +122,8 @@ SELECT 'LEFT OUTER JOIN WITH EXCLUSION' AS '-------------JOIN-------------';
 
 SELECT * FROM `Сотрудник` AS sot
 LEFT OUTER JOIN `Должность` AS dol
-ON sot.`Код должности` = dol.`Код` WHERE dol.`Код` IS NULL;
+ON sot.`Код должности` = dol.`Код` 
+WHERE dol.`Код` IS NULL;
 
 
 
@@ -128,7 +131,5 @@ SELECT 'RIGHT OUTER JOIN WITH EXCLUSION' AS '--------------JOIN--------------';
 
 SELECT * FROM `Сотрудник` AS sot
 RIGHT OUTER JOIN `Должность` AS dol
-ON sot.`Код должности` = dol.`Код` WHERE sot.`Код должности` IS NULL;
-
-
-
+ON sot.`Код должности` = dol.`Код` 
+WHERE sot.`Код должности` IS NULL;
