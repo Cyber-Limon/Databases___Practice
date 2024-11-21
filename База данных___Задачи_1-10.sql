@@ -107,35 +107,35 @@ SELECT '1 часть' AS '-----Задачи по SQL-----';
 SELECT * FROM Customers;
 
 #Задание 1.2
-SELECT cust_id from Customers;
+SELECT cust_id FROM Customers;
 
 #Задание 1.3
 SELECT prod_id, prod_name, prod_price FROM Products;
 
 #Задание 1.4
-SELECT prod_id FROM Products order by prod_id;
+SELECT prod_id FROM Products ORDER BY prod_id;
 
 #Задание 1.5
-SELECT prod_id, prod_name, prod_price from Products order by prod_name, prod_price;
+SELECT prod_id, prod_name, prod_price FROM Products ORDER BY prod_name, prod_price;
 
 
 
 SELECT '2 часть' AS '-----Задачи по SQL-----';
 
 #Задание 2.1
-select prod_id, prod_price, prod_name from Products order by 2,3;
+SELECT prod_id, prod_price, prod_name FROM Products ORDER BY 2,3;
 
 #Задание 2.2
-select prod_id, prod_name, prod_price from Products order by prod_name desc;
+SELECT prod_id, prod_name, prod_price FROM Products ORDER BY prod_name DESC;
 
 #Задание 2.3
-select prod_id, prod_name, prod_price from Products order by prod_name desc, prod_price asc;
+SELECT prod_id, prod_name, prod_price FROM Products ORDER BY prod_name DESC, prod_price ASC;
 
 #Задание 2.4
-select prod_id, prod_name, prod_price from Products where prod_price = 3.49;
+SELECT prod_id, prod_name, prod_price FROM Products WHERE prod_price = 3.49;
 
 #Задание 2.5
-select prod_id, prod_name, prod_price from Products where prod_price = 11.99 and vend_id = "BRS01";
+SELECT prod_id, prod_name, prod_price FROM Products WHERE prod_price = 11.99 AND vend_id = "BRS01";
 
 
 
