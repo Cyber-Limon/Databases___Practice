@@ -133,3 +133,32 @@ SELECT * FROM `Сотрудник` AS sot
 RIGHT OUTER JOIN `Должность` AS dol
 ON sot.`Код должности` = dol.`Код` 
 WHERE sot.`Код должности` IS NULL;
+
+
+
+SELECT 'SEMI JOIN SIMILAR TO INNER JOIN WITH LESS DUPLICATION' 
+    AS '-------------------------JOIN-------------------------';
+
+SELECT * FROM `Сотрудник` AS sot 
+WHERE EXISTS (SELECT 1 FROM `Должность` AS dol 
+              WHERE sot.`Код должности` = dol.`Код`);
+
+
+
+SELECT 'TWO INNER JOIN' AS '-----JOIN-----';
+
+SELECT * FROM `Сотрудник` AS sot
+INNER JOIN `Должность` AS dol 
+ON sot.`Код должности` = dol.`Код`
+INNER JOIN `Организация` AS org
+ON sot.`Код организации` = org.`Код`;
+
+
+
+SELECT 'TWO LEFT OTHER JOIN' AS '--------JOIN--------';
+
+SELECT * FROM `Сотрудник` AS sot 
+LEFT JOIN `Должность` AS dol 
+ON sot.`Код должности` = dol.`Код`
+LEFT JOIN `Организация` AS org
+ON sot.`Код организации` = org.`Код`;
